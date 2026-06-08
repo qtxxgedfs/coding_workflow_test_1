@@ -20,20 +20,15 @@ Before non-trivial work, Codex should read:
 
 Before editing code, inspect the Git state. Preserve unrelated user changes.
 
-## Agent Artifact Paths
+## Agent Documents
 
-- Current state index: `docs/agent/PROJECT_STATE.md`
-- Directory contract: `docs/agent/DIRECTORY_STRUCTURE.md`
-- Reusable templates: `docs/agent/templates/`
-- Plans and plan addendums: `docs/plans/`
-- Architecture decisions: `docs/decisions/`
-- Developer reports: `docs/reports/dev/`
-- QA reports: `docs/reports/qa/`
-- Review reports: `docs/reports/review/`
-- Delivery reports: `docs/reports/delivery/`
-- Handoffs: `docs/handoffs/`
-- Automation and checks: `scripts/`
-- Lightweight project skills: `.agents/skills/`
+- `docs/agent/PROJECT_STATE.md` is the compact current-state entry point.
+- `docs/agent/DIRECTORY_STRUCTURE.md` owns directory layout, artifact types,
+  and file naming rules.
+- `docs/agent/templates/` owns reusable examples for creating new artifacts.
+
+Read `docs/agent/DIRECTORY_STRUCTURE.md` before creating, renaming, or checking
+agent artifacts. Keep detailed path and naming rules out of this file.
 
 ## Non-Trivial Work
 
@@ -79,21 +74,13 @@ Codex should not rewrite historical artifacts in place unless the user asks.
 Prefer append-only addendums, new reports, new ADRs, or targeted updates to
 `PROJECT_STATE.md`.
 
-## Work Modes
+## Operating Posture
 
-Use these modes as lightweight thinking postures, not as a rigid gate system.
+Use lightweight modes only as thinking postures, not as a rigid workflow:
+architect, developer, QA, review, delivery, handoff.
 
-- Architect: clarify scope, risks, architecture decisions, acceptance
-  scenarios, state models, and validation strategy.
-- Developer: inspect current code and Git state, implement the effective plan,
-  add focused regression coverage when feasible, and record evidence.
-- QA: verify user value, edge cases, regressions, and report reproducible
-  results. Prefer project-native tests over isolated workflow-only tests.
-- Review: inspect the diff for bugs, regressions, security issues, maintainance
-  risk, accessibility issues, and missing tests.
-- Delivery: verify that evidence is coherent enough to hand back to the user.
-- Handoff: summarize current facts, changed files, artifacts, validation, open
-  risks, and the exact next step.
+Detailed role behavior belongs in repo skills, templates, or role documents,
+not in this file.
 
 If a plan is missing, stale, contradictory, unsafe, or mismatched with the
 codebase, stop and update planning artifacts before coding.
@@ -106,19 +93,6 @@ reproducible validation available and record the gap.
 
 When `scripts/agent-check.ps1` exists, run it before finishing non-trivial work
 and fix documentation gaps or report the blocker.
-
-## File Naming
-
-Use lowercase slugs where practical.
-
-- Plan: `docs/plans/YYYY-MM-DD-task-slug.md`
-- Plan addendum: `docs/plans/YYYY-MM-DD-task-slug-addendum-N.md`
-- ADR: `docs/decisions/ADR-NNN-short-title.md`
-- Dev report: `docs/reports/dev/YYYY-MM-DD-task-slug.md`
-- QA report: `docs/reports/qa/YYYY-MM-DD-task-slug.md`
-- Review report: `docs/reports/review/YYYY-MM-DD-task-slug.md`
-- Delivery report: `docs/reports/delivery/YYYY-MM-DD-task-slug.md`
-- Handoff: `docs/handoffs/YYYY-MM-DD-task-slug.md`
 
 ## Final Response Expectations
 

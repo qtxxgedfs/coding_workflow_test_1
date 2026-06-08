@@ -74,19 +74,24 @@ Use artifacts as source-of-truth engineering memory, not decorative reports.
 
 ## Naming Rules
 
-Use lowercase task slugs and dates in local time unless a project standard says
-otherwise.
+Use lowercase task slugs and local timestamps unless a project standard says
+otherwise. Timestamped artifacts use `YYYY-MM-DD-HH-MM-SS` so multiple updates
+created on the same day remain sortable and unambiguous.
 
 | Artifact | Pattern |
 | --- | --- |
-| Plan | `docs/plans/YYYY-MM-DD-task-slug.md` |
-| Plan Addendum | `docs/plans/YYYY-MM-DD-task-slug-addendum-N.md` |
+| Plan | `docs/plans/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+| Plan Addendum | `docs/plans/YYYY-MM-DD-HH-MM-SS-task-slug-addendum-N.md` |
 | ADR | `docs/decisions/ADR-NNN-short-title.md` |
-| Dev Report | `docs/reports/dev/YYYY-MM-DD-task-slug.md` |
-| QA Report | `docs/reports/qa/YYYY-MM-DD-task-slug.md` |
-| Review Report | `docs/reports/review/YYYY-MM-DD-task-slug.md` |
-| Delivery Report | `docs/reports/delivery/YYYY-MM-DD-task-slug.md` |
-| Handoff | `docs/handoffs/YYYY-MM-DD-task-slug.md` |
+| Dev Report | `docs/reports/dev/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+| QA Report | `docs/reports/qa/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+| Review Report | `docs/reports/review/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+| Delivery Report | `docs/reports/delivery/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+| Handoff | `docs/handoffs/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
+
+ADRs keep stable numeric names because they are long-lived decision records.
+Put creation and update timestamps inside the ADR body instead of forcing them
+into the filename.
 
 ## Automatic Update Contract
 

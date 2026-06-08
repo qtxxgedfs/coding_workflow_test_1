@@ -16,7 +16,7 @@ short, current, and linked to the durable artifacts that contain detail.
   supervised, resumable Codex development.
 - Current Phase: planning
 - Current Owner Mode: architect
-- Last Updated: 2026-06-08
+- Last Updated: 2026-06-08-05-09-06
 
 Allowed phases:
 
@@ -66,12 +66,22 @@ Allowed phases:
 | `git ls-remote https://github.com/qtxxgedfs/coding_workflow_test_1.git` | passed | Remote repository is reachable and appears empty. |
 | `git init -b main` | passed | Initialized local repository in `new_1`. |
 | `git remote add origin https://github.com/qtxxgedfs/coding_workflow_test_1.git` | passed | Connected local repository to GitHub origin. |
+| `rg --pcre2 "YYYY-MM-DD(?!-HH-MM-SS)\|Work Modes\|Agent Artifact Paths" .` | passed | No old naming patterns or removed section names remain. |
+| `rg "YYYY-MM-DD-HH-MM-SS\|ADR-NNN\|Operating Posture\|Agent Documents" AGENTS.md docs/agent/DIRECTORY_STRUCTURE.md docs/agent/PROJECT_STATE.md` | passed | Confirmed new naming and concise section names are present. |
 
 ## Recently Changed Files
 
 - `AGENTS.md`
 - `docs/agent/PROJECT_STATE.md`
 - `docs/agent/DIRECTORY_STRUCTURE.md`
+
+Recent direction:
+
+- File naming for timestamped artifacts should use
+  `YYYY-MM-DD-HH-MM-SS-task-slug`.
+- `AGENTS.md` should stay focused on behavior rules.
+- `docs/agent/DIRECTORY_STRUCTURE.md` should own detailed path and naming
+  rules.
 
 ## Update Rules
 
