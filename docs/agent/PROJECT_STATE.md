@@ -14,9 +14,9 @@ short, current, and linked to the durable artifacts that contain detail.
 
 - Current Objective: Establish a repo-native agent operating layer for
   supervised, resumable Codex development.
-- Current Phase: planning
-- Current Owner Mode: architect
-- Last Updated: 2026-06-08-05-09-06
+- Current Phase: implementation
+- Current Owner Mode: developer
+- Last Updated: 2026-06-08-06-26-00
 
 Allowed phases:
 
@@ -33,21 +33,20 @@ Allowed phases:
 | Artifact | Path | Status | Notes |
 | --- | --- | --- | --- |
 | Directory Contract | `docs/agent/DIRECTORY_STRUCTURE.md` | active | Defines the repo-native agent tree. |
-| Latest Plan | `TBD` | missing | Create before the first non-trivial implementation task. |
-| Latest Addendum | `TBD` | not-needed | Use when implementation changes a plan. |
+| Latest Plan | `docs/plans/2026-06-08-05-26-41-agent-templates-and-check.md` | active | Plan for templates and agent-check implementation. |
+| Latest Addendum | `docs/plans/2026-06-08-06-21-47-agent-templates-and-check-addendum-1.md` | active | Review feedback cleanup for templates and naming terms. |
 | Latest Decision | `TBD` | not-needed | Use ADRs for architecture or product direction changes. |
-| Latest Dev Report | `TBD` | missing | Create after non-trivial implementation. |
-| Latest QA Report | `TBD` | missing | Create after validation of non-trivial work. |
+| Latest Dev Report | `docs/reports/dev/2026-06-08-06-24-01-agent-template-review-cleanup.md` | active | Implementation evidence for review feedback cleanup. |
+| Latest QA Report | `docs/reports/qa/2026-06-08-06-24-01-agent-template-review-cleanup.md` | active | QA evidence for review feedback cleanup. |
 | Latest Review Report | `TBD` | optional | Use for independent review or high-risk diffs. |
 | Latest Delivery Report | `TBD` | optional | Use before shipping or handing off completed work. |
 | Latest Handoff | `TBD` | missing | Create before pausing or switching threads. |
 
 ## Open Risks
 
-- The documentation contract exists, but `scripts/agent-check.ps1` is not yet
-  implemented.
 - The lightweight project skill is not yet implemented.
-- The template files under `docs/agent/templates/` are not yet populated.
+- `scripts/agent-check.ps1` uses simple heading and state-link checks rather
+  than deep semantic Markdown validation.
 
 ## Blockers
 
@@ -55,14 +54,21 @@ Allowed phases:
 
 ## Next Recommended Action
 
-1. Create the first plan artifact for implementing `scripts/agent-check.ps1`.
-2. Add full templates under `docs/agent/templates/`.
-3. Implement the lightweight project skill under `.agents/skills/`.
+1. Implement the lightweight project skill under `.agents/skills/`.
+2. Re-run `scripts/agent-check.ps1` after adding the skill and update this
+   state file with the latest artifacts.
 
 ## Last Verified Commands
 
 | Command | Result | Notes |
 | --- | --- | --- |
+| `$null = [scriptblock]::Create((Get-Content -Raw -LiteralPath 'scripts\agent-check.ps1')); 'parse ok'` | passed | Confirmed `scripts/agent-check.ps1` parses after string fixes. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | expected-fail | Correctly failed before dev/QA report artifacts existed. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | passed | Root run passed with 56 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File new_1\scripts\agent-check.ps1 -Root D:\codex\coding_workflow_test_1\new_1` | passed | Parent-directory run passed with 56 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | passed | Template cleanup run passed with 71 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | passed | Template cleanup strict run passed with 71 checks and 0 warnings. |
+| `rg "Project Slug\|Task Slug\|Naming Terms\|Chinese\|zh-CN\|agent-translate" docs/agent docs/plans docs/reports` | passed | Confirmed naming terms, slug metadata, and planned Chinese output entries. |
 | `git ls-remote https://github.com/qtxxgedfs/coding_workflow_test_1.git` | passed | Remote repository is reachable and appears empty. |
 | `git init -b main` | passed | Initialized local repository in `new_1`. |
 | `git remote add origin https://github.com/qtxxgedfs/coding_workflow_test_1.git` | passed | Connected local repository to GitHub origin. |
@@ -74,6 +80,11 @@ Allowed phases:
 - `AGENTS.md`
 - `docs/agent/PROJECT_STATE.md`
 - `docs/agent/DIRECTORY_STRUCTURE.md`
+- `docs/agent/templates/*.md`
+- `docs/plans/2026-06-08-05-26-41-agent-templates-and-check.md`
+- `docs/reports/dev/2026-06-08-05-42-28-agent-templates-and-check.md`
+- `docs/reports/qa/2026-06-08-05-42-28-agent-templates-and-check.md`
+- `scripts/agent-check.ps1`
 
 Recent direction:
 
@@ -82,6 +93,8 @@ Recent direction:
 - `AGENTS.md` should stay focused on behavior rules.
 - `docs/agent/DIRECTORY_STRUCTURE.md` should own detailed path and naming
   rules.
+- Full templates and `agent-check.ps1` are now implemented; the lightweight
+  skill is still the next planned layer.
 
 ## Update Rules
 

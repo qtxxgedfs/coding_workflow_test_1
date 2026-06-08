@@ -14,6 +14,8 @@ docs/
     PROJECT_STATE.md
     DIRECTORY_STRUCTURE.md
     templates/
+      AGENTS_TEMPLATE.md
+      PROJECT_STATE_TEMPLATE.md
       PLAN_TEMPLATE.md
       PLAN_ADDENDUM_TEMPLATE.md
       ADR_TEMPLATE.md
@@ -78,6 +80,16 @@ Use lowercase task slugs and local timestamps unless a project standard says
 otherwise. Timestamped artifacts use `YYYY-MM-DD-HH-MM-SS` so multiple updates
 created on the same day remain sortable and unambiguous.
 
+### Naming Terms
+
+| Term | Meaning | Example |
+| --- | --- | --- |
+| Project Slug | Stable repository or product identifier. It appears in `AGENTS.md` and `PROJECT_STATE.md` and should not be used to distinguish individual work items. | `coding-workflow-test-1` |
+| Task Slug | Short lowercase identifier for one unit of work. Timestamped task artifacts use this value in filenames. | `agent-templates-and-check` |
+| Artifact Type | The kind of durable record being created. | plan, addendum, ADR, dev report, QA report, review report, delivery report, handoff |
+| Timestamp | Local creation time used to sort timestamped artifacts. | `2026-06-08-05-26-41` |
+| Owner Mode | Lightweight thinking posture for the artifact author. It is not a separate runtime agent. | architect, developer, QA, review, delivery, handoff |
+
 | Artifact | Pattern |
 | --- | --- |
 | Plan | `docs/plans/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
@@ -101,12 +113,13 @@ task evolves.
 Use addendums and ADRs for changed thinking. Use reports for completed evidence.
 Use handoffs when work pauses or context may be lost.
 
-## Planned Mechanical Checks
+## Mechanical Checks
 
-`scripts/agent-check.ps1` should eventually check:
+`scripts/agent-check.ps1` checks:
 
 - `AGENTS.md` exists.
 - `docs/agent/PROJECT_STATE.md` exists.
+- required directories and templates exist;
 - paths named in `PROJECT_STATE.md` exist unless marked `TBD`, `missing`,
   `optional`, or `not-needed`;
 - non-trivial work has a plan;
