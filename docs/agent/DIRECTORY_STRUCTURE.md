@@ -84,8 +84,8 @@ created on the same day remain sortable and unambiguous.
 
 | Term | Meaning | Example |
 | --- | --- | --- |
-| Project Slug | Stable repository or product identifier. It appears in `AGENTS.md` and `PROJECT_STATE.md` and should not be used to distinguish individual work items. | `coding-workflow-test-1` |
-| Task Slug | Short lowercase identifier for one unit of work. Timestamped task artifacts use this value in filenames. | `agent-templates-and-check` |
+| Project Slug | Stable repository or product identifier. It appears in `AGENTS.md` and `PROJECT_STATE.md` and should not be used to distinguish individual work items. | `example-product` |
+| Task Slug | Short lowercase identifier for one unit of work. Timestamped task artifacts use this value in filenames. | `example-task` |
 | Artifact Type | The kind of durable record being created. | plan, addendum, ADR, dev report, QA report, review report, delivery report, handoff |
 | Timestamp | Local creation time used to sort timestamped artifacts. | `2026-06-08-05-26-41` |
 | Owner Mode | Lightweight thinking posture for the artifact author. It is not a separate runtime agent. | architect, developer, QA, review, delivery, handoff |

@@ -1,8 +1,8 @@
 # Project Agent Contract
 
-Project Name: Coding Workflow Test 1
-Project Slug: coding-workflow-test-1
-Project Aliases: coding_workflow_test_1, new_1
+Project Name: Example Product
+Project Slug: example-product
+Project Aliases: example_product, example-app
 
 This repository uses a repo-native agent operating layer. Do not wrap the source
 project in a separate `workspace/project` directory. Keep agent memory,
