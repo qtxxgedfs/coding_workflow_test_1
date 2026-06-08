@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Agent"
+  short_description: "Maintain repo-native agent documents."
+  default_prompt: "Use $project-agent to keep project plans, reports, state, and handoff artifacts current while doing this task."
