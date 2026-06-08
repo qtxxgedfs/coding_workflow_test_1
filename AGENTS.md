@@ -79,9 +79,6 @@ Prefer append-only addendums, new reports, new ADRs, or targeted updates to
 Use lightweight modes only as thinking postures, not as a rigid workflow:
 architect, developer, QA, review, delivery, handoff.
 
-Detailed role behavior belongs in repo skills, templates, or role documents,
-not in this file.
-
 If a plan is missing, stale, contradictory, unsafe, or mismatched with the
 codebase, stop and update planning artifacts before coding.
 

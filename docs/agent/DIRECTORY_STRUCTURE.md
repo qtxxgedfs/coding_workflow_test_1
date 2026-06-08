@@ -89,10 +89,6 @@ created on the same day remain sortable and unambiguous.
 | Delivery Report | `docs/reports/delivery/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
 | Handoff | `docs/handoffs/YYYY-MM-DD-HH-MM-SS-task-slug.md` |
 
-ADRs keep stable numeric names because they are long-lived decision records.
-Put creation and update timestamps inside the ADR body instead of forcing them
-into the filename.
-
 ## Automatic Update Contract
 
 Codex may automatically update agent artifacts when the update follows
