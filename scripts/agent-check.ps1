@@ -328,7 +328,7 @@ if ($HandoffFiles.Count -gt 0) {
     Test-ArtifactHeadings -Files $HandoffFiles -Headings @("Objective And Current Owner", "Git State", "Artifact Map", "Validation Evidence", "Next Action")
 }
 
-$GitRows = Get-GitStatusRows
+$GitRows = @(Get-GitStatusRows)
 if ($GitRows.Count -gt 0) {
     $CodeChanges = @($GitRows | Where-Object {
         $_.Path -ne "" -and

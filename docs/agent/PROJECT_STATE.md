@@ -16,7 +16,7 @@ short, current, and linked to the durable artifacts that contain detail.
   supervised, resumable Codex development.
 - Current Phase: review
 - Current Owner Mode: review
-- Last Updated: 2026-06-08-06-59-18
+- Last Updated: 2026-06-08-07-17-00
 
 Allowed phases:
 
@@ -33,11 +33,11 @@ Allowed phases:
 | Artifact | Path | Status | Notes |
 | --- | --- | --- | --- |
 | Directory Contract | `docs/agent/DIRECTORY_STRUCTURE.md` | active | Defines the repo-native agent tree. |
-| Latest Plan | `docs/plans/2026-06-08-06-43-37-project-agent-skill.md` | active | Plan for the lightweight repo-local project skill. |
+| Latest Plan | `docs/plans/2026-06-08-07-09-32-agent-check-clean-status.md` | active | Plan for the clean Git status agent-check fix and overall audit. |
 | Latest Addendum | `TBD` | not-needed | No addendum is needed for the skill implementation yet. |
 | Latest Decision | `TBD` | not-needed | Use ADRs for architecture or product direction changes. |
-| Latest Dev Report | `docs/reports/dev/2026-06-08-06-43-37-project-agent-skill.md` | active | Implementation evidence for the lightweight skill. |
-| Latest QA Report | `docs/reports/qa/2026-06-08-06-43-37-project-agent-skill.md` | active | QA evidence for the lightweight skill. |
+| Latest Dev Report | `docs/reports/dev/2026-06-08-07-09-32-agent-check-clean-status.md` | active | Implementation evidence for the clean status fix. |
+| Latest QA Report | `docs/reports/qa/2026-06-08-07-09-32-agent-check-clean-status.md` | active | QA evidence for the clean status fix and 1-9 audit. |
 | Latest Review Report | `TBD` | optional | Use for independent review or high-risk diffs. |
 | Latest Delivery Report | `TBD` | optional | Use before shipping or handing off completed work. |
 | Latest Handoff | `TBD` | missing | Create before pausing or switching threads. |
@@ -48,6 +48,8 @@ Allowed phases:
   than deep semantic Markdown validation.
 - The lightweight project skill has not yet been forward-tested in a fresh
   thread or subagent.
+- Prompt usage is available through the skill default prompt, but there is no
+  standalone prompt usage guide.
 
 ## Blockers
 
@@ -55,7 +57,7 @@ Allowed phases:
 
 ## Next Recommended Action
 
-1. Push the committed skill/artifact changes to `origin/main` when ready.
+1. Push committed changes to `origin/main` when ready.
 2. Review the skill on a real non-trivial task or fresh-thread forward test
    before relying on it for high-risk work.
 
@@ -81,6 +83,12 @@ Allowed phases:
 | `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | passed | Project-agent skill strict run passed with 86 checks and 0 warnings. |
 | `git status --short` | passed | Showed only intended uncommitted project-agent skill and artifact changes. |
 | `git commit -m "Add project-agent skill"` | passed | Created the local project-agent skill commit; this state update was amended into the same commit. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | failed then passed | Initial overall audit failed on clean Git status; after the array fix, passed with 103 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | failed then passed | Initial strict audit failed on clean Git status; after the array fix, passed with 103 checks and 0 warnings. |
+| `$Target = Join-Path $env:TEMP 'codex-pyyaml-validate'; $env:PYTHONPATH = $Target; python C:\Users\wangx\.codex\skills\.system\skill-creator\scripts\quick_validate.py .agents\skills\project-agent` | passed | Skill validator reported "Skill is valid!" during the 1-9 audit. |
+| `git commit -m "Fix agent-check clean status handling"` | passed | Committed the clean Git status fix and related artifacts. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | passed | Post-commit clean-working-tree run passed with 102 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | passed | Post-commit clean-working-tree strict run passed with 102 checks and 0 warnings. |
 
 ## Recently Changed Files
 
@@ -90,13 +98,16 @@ Allowed phases:
 - `docs/agent/PROJECT_STATE.md`
 - `docs/agent/DIRECTORY_STRUCTURE.md`
 - `docs/agent/templates/*.md`
+- `docs/plans/2026-06-08-07-09-32-agent-check-clean-status.md`
+- `docs/reports/dev/2026-06-08-07-09-32-agent-check-clean-status.md`
+- `docs/reports/qa/2026-06-08-07-09-32-agent-check-clean-status.md`
+- `scripts/agent-check.ps1`
 - `docs/plans/2026-06-08-06-43-37-project-agent-skill.md`
 - `docs/reports/dev/2026-06-08-06-43-37-project-agent-skill.md`
 - `docs/reports/qa/2026-06-08-06-43-37-project-agent-skill.md`
 - `docs/plans/2026-06-08-05-26-41-agent-templates-and-check.md`
 - `docs/reports/dev/2026-06-08-05-42-28-agent-templates-and-check.md`
 - `docs/reports/qa/2026-06-08-05-42-28-agent-templates-and-check.md`
-- `scripts/agent-check.ps1`
 
 Recent direction:
 
