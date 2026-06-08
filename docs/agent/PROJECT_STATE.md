@@ -16,7 +16,7 @@ short, current, and linked to the durable artifacts that contain detail.
   supervised, resumable Codex development.
 - Current Phase: review
 - Current Owner Mode: review
-- Last Updated: 2026-06-08-07-17-00
+- Last Updated: 2026-06-08-08-45-00
 
 Allowed phases:
 
@@ -33,11 +33,11 @@ Allowed phases:
 | Artifact | Path | Status | Notes |
 | --- | --- | --- | --- |
 | Directory Contract | `docs/agent/DIRECTORY_STRUCTURE.md` | active | Defines the repo-native agent tree. |
-| Latest Plan | `docs/plans/2026-06-08-07-09-32-agent-check-clean-status.md` | active | Plan for the clean Git status agent-check fix and overall audit. |
+| Latest Plan | `docs/plans/2026-06-08-08-40-29-prompt-usage-and-forward-test.md` | active | Plan for prompt usage documentation and fresh-thread forward test. |
 | Latest Addendum | `TBD` | not-needed | No addendum is needed for the skill implementation yet. |
 | Latest Decision | `TBD` | not-needed | Use ADRs for architecture or product direction changes. |
-| Latest Dev Report | `docs/reports/dev/2026-06-08-07-09-32-agent-check-clean-status.md` | active | Implementation evidence for the clean status fix. |
-| Latest QA Report | `docs/reports/qa/2026-06-08-07-09-32-agent-check-clean-status.md` | active | QA evidence for the clean status fix and 1-9 audit. |
+| Latest Dev Report | `docs/reports/dev/2026-06-08-08-40-29-prompt-usage-and-forward-test.md` | active | Implementation evidence for prompt usage documentation. |
+| Latest QA Report | `docs/reports/qa/2026-06-08-08-40-29-prompt-usage-and-forward-test.md` | active | QA evidence for prompt usage and forward-test work. |
 | Latest Review Report | `TBD` | optional | Use for independent review or high-risk diffs. |
 | Latest Delivery Report | `TBD` | optional | Use before shipping or handing off completed work. |
 | Latest Handoff | `TBD` | missing | Create before pausing or switching threads. |
@@ -46,10 +46,8 @@ Allowed phases:
 
 - `scripts/agent-check.ps1` uses simple heading and state-link checks rather
   than deep semantic Markdown validation.
-- The lightweight project skill has not yet been forward-tested in a fresh
-  thread or subagent.
-- Prompt usage is available through the skill default prompt, but there is no
-  standalone prompt usage guide.
+- Fresh-thread forward-test passed, but real task performance still needs the
+  item 10 small-project trial.
 
 ## Blockers
 
@@ -57,9 +55,9 @@ Allowed phases:
 
 ## Next Recommended Action
 
-1. Push committed changes to `origin/main` when ready.
-2. Review the skill on a real non-trivial task or fresh-thread forward test
-   before relying on it for high-risk work.
+1. Commit and push prompt usage and forward-test artifacts.
+2. Run item 10: a small-project trial to test whether the system is lightweight,
+   low-friction, and helps Codex resume faster.
 
 ## Last Verified Commands
 
@@ -89,6 +87,11 @@ Allowed phases:
 | `git commit -m "Fix agent-check clean status handling"` | passed | Committed the clean Git status fix and related artifacts. |
 | `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | passed | Post-commit clean-working-tree run passed with 102 checks and 0 warnings. |
 | `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | passed | Post-commit clean-working-tree strict run passed with 102 checks and 0 warnings. |
+| `git push origin main` | passed | Pushed local commits through `97da8cd` to `origin/main`. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1` | passed | Prompt usage run passed with 118 checks and 0 warnings. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\agent-check.ps1 -Strict` | passed | Prompt usage strict run passed with 118 checks and 0 warnings. |
+| `$Target = Join-Path $env:TEMP 'codex-pyyaml-validate'; $env:PYTHONPATH = $Target; python C:\Users\wangx\.codex\skills\.system\skill-creator\scripts\quick_validate.py .agents\skills\project-agent` | passed | Skill validator reported "Skill is valid!" after prompt usage documentation. |
+| `fresh thread 019ea741-f032-7f40-ab7c-cf0ede205c23` | passed | Separate thread found `$project-agent`, read repo docs, reconstructed current project state, and did not modify files. |
 
 ## Recently Changed Files
 
@@ -102,6 +105,10 @@ Allowed phases:
 - `docs/reports/dev/2026-06-08-07-09-32-agent-check-clean-status.md`
 - `docs/reports/qa/2026-06-08-07-09-32-agent-check-clean-status.md`
 - `scripts/agent-check.ps1`
+- `docs/agent/PROMPT_USAGE.md`
+- `docs/plans/2026-06-08-08-40-29-prompt-usage-and-forward-test.md`
+- `docs/reports/dev/2026-06-08-08-40-29-prompt-usage-and-forward-test.md`
+- `docs/reports/qa/2026-06-08-08-40-29-prompt-usage-and-forward-test.md`
 - `docs/plans/2026-06-08-06-43-37-project-agent-skill.md`
 - `docs/reports/dev/2026-06-08-06-43-37-project-agent-skill.md`
 - `docs/reports/qa/2026-06-08-06-43-37-project-agent-skill.md`
